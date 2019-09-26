@@ -2,6 +2,9 @@
 import React, { Component, Suspense } from 'react';
 import Loadable from 'react-loadable';
 
+//Redux
+import { connect } from 'react-redux';
+
 import Aux from './_Aux/_Aux';
 import cargando from './cargando/cargando';
 
@@ -12,8 +15,11 @@ import { Switch, Route } from 'react-router-dom';
 import '../../node_modules/font-awesome/scss/font-awesome.scss';
 import './app.scss';
 
-//Componente home que aparece a la izquierda
+//Componente Menu que aparece a la izquierda
 import Menu from './menu/menu';
+
+//Componente navbar
+import Navbar from './navbar/navbar';
 
 //importamos la ruta por defecto (La importará cuando sea requerida)
 const InicarSesion = Loadable({
@@ -29,13 +35,21 @@ const Home = Loadable({
 
 
 export class App extends Component {
+
+  ocultarMenu = (evento) => {
+    if(this.props.accion === "mob-open"){
+      this.props.ocultarMenu("");
+    }
+  }
+
   render() {
     return (
       < Aux >
         <Suspense fallback={<cargando />}>
           {/* Suspense se utiliza para mostrar "algo" miestras se carga el/los import necesarios */}
           <Menu />
-          <div className="pcoded-main-container">
+          <Navbar />
+          <div className="pcoded-main-container" onClick={this.ocultarMenu}>
             <div className="pcoded-wrapper">
               <div className="pcoded-content">
                 <div className="pcoded-inner-content">
@@ -58,4 +72,19 @@ export class App extends Component {
   }
 }
 
-export default App
+
+const mapStateToProps = (state) =>{
+  return {
+      accion: state.menu.className_menu_añadido
+  }
+}
+
+const mapDispatchToProps = (dispatch) =>{
+  return{
+      ocultarMenu : (accion) =>{
+          dispatch({type: "ACCIONAR_MENU_APP", accion})
+      }
+  }
+}
+
+export default connect(mapStateToProps, mapDispatchToProps)(App);
