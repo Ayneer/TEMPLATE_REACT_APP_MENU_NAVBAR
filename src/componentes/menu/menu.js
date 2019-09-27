@@ -5,22 +5,19 @@ import { connect } from 'react-redux';
 
 export class Menu extends Component {
 
-    state = {
-        className_2: "mobile-menu"
-    }
-
-    cambiarEstadoMenu = () =>{
-        if(this.props.className_icon === "mobile-menu"){
+    cambiarEstadoMenu = () => {
+        if (this.props.className_icon === "mobile-menu") {
             this.props.accionarMenu("navbar-collapsed");
-        }else{
+        } else {
             this.props.accionarMenu("");
         }
     }
 
     cambairEstadoDropdown = () => {
-        if(this.props.estadoDropdown === "nav-item pcoded-hasmenu"){
+
+        if (this.props.estadoDropdown === "nav-item pcoded-hasmenu") {
             this.props.accionarDropdown("nav-item pcoded-hasmenu active pcoded-trigger");
-        }else{
+        } else {
             this.props.accionarDropdown("nav-item pcoded-hasmenu");
         }
     }
@@ -28,8 +25,9 @@ export class Menu extends Component {
     render() {
 
         const { className, accion, className_icon } = this.props;
+
         const nuevoClassName = className + " " + accion;
-        console.log(className_icon)
+
         return (
             <div className={nuevoClassName}>
                 <div className="navbar-wrapper">
@@ -46,9 +44,12 @@ export class Menu extends Component {
                     </div>
                     {/* Logo menu - Fin */}
 
+                    {/* Lista de opciones del menu - Inicio */}
                     <div className="navbar-content datta-scroll">
                         <PerfectScrollabar>
                             <ul className="nav pcoded-inner-navbar">
+
+                                {/* Item normal - inicio */}
                                 <li className="nav-item pcoded-menu-caption">
                                     <label>Ejemplo</label>
                                 </li>
@@ -60,10 +61,13 @@ export class Menu extends Component {
                                         <span className="pcoded-mtext">Dashboard</span>
                                     </NavLink>
                                 </li>
+                                {/* Item normal - Fin */}
+
+                                {/* Item Dropdiwn - Inicio */}
                                 <li className="nav-item pcoded-menu-caption">
                                     <label>Dropdown</label>
                                 </li>
-                                {/* active pcoded-trigger -> añadir con evento */}
+
                                 <li className={this.props.estadoDropdown}>
                                     <NavLink to="#" onClick={this.cambairEstadoDropdown}>
                                         <span className="pcoded-micon">
@@ -73,20 +77,23 @@ export class Menu extends Component {
                                     </NavLink>
                                     <ul className="pcoded-submenu">
                                         <li>
-                                            <NavLink className="nav-link" to="/">
-                                                Sub item
+                                            <NavLink className="nav-link" to="/iniciarSesion">
+                                                Iniciar Sesion
                                             </NavLink>
                                         </li>
                                         <li>
-                                            <NavLink className="nav-link" to="/">
-                                                Sub item 2
+                                            <NavLink className="nav-link" to="/Registrarme">
+                                                Registrarme
                                             </NavLink>
                                         </li>
                                     </ul>
                                 </li>
+                                {/* Item Dropdiwn - Fin */}
+
                             </ul>
                         </PerfectScrollabar>
                     </div>
+                    {/* Lista de opciones del menu - Fin */}
 
                 </div>
             </div>
@@ -94,7 +101,7 @@ export class Menu extends Component {
     }
 }
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
     return {
         state: state.menu,
         className: state.menu.className_menu_defecto,
@@ -104,13 +111,13 @@ const mapStateToProps = (state) =>{
     }
 }
 
-const mapDispatchToProps = (dispatch) =>{
-    return{
-        accionarMenu : (accion) =>{
-            dispatch({type: "ACCIONAR_MENU_MENU", accion})
+const mapDispatchToProps = (dispatch) => {
+    return {
+        accionarMenu: (accion) => {
+            dispatch({ type: "ACCIONAR_MENU_MENU", accion })
         },
         accionarDropdown: (action) => {
-            dispatch({type: "ACCIONAR_DROPDOWN", action})
+            dispatch({ type: "ACCIONAR_DROPDOWN", action })
         }
     }
 }
