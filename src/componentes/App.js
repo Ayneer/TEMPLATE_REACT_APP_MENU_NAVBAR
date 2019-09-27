@@ -9,7 +9,7 @@ import Aux from './_Aux/_Aux';
 import cargando from './cargando/cargando';
 
 //Al ser este archivo quien contiene las rutas, se debe import lo necesario.
-import { Switch, Route } from 'react-router-dom';
+import { Switch, Route, Redirect } from 'react-router-dom';
 
 //scss
 import '../../node_modules/font-awesome/scss/font-awesome.scss';
@@ -36,8 +36,8 @@ const Home = Loadable({
 
 export class App extends Component {
 
-  ocultarMenu = (evento) => {
-    if(this.props.accion === "mob-open"){
+  ocultarMenu = () => {
+    if (this.props.menu_añadido === "mob-open") {
       this.props.ocultarMenu("");
     }
   }
@@ -56,7 +56,7 @@ export class App extends Component {
                   <div className="main-body">
                     <div className="page-wrapper">
                       <Switch>
-                        <Route path="/" component={Home} />
+                        <Route exact path="/" component={Home} />
                         <Route path="/iniciarSesion" component={InicarSesion} />
                       </Switch>
                     </div>
@@ -73,17 +73,17 @@ export class App extends Component {
 }
 
 
-const mapStateToProps = (state) =>{
+const mapStateToProps = (state) => {
   return {
-      accion: state.menu.className_menu_añadido
+    menu_añadido: state.menu.className_menu_añadido
   }
 }
 
-const mapDispatchToProps = (dispatch) =>{
-  return{
-      ocultarMenu : (accion) =>{
-          dispatch({type: "ACCIONAR_MENU_APP", accion})
-      }
+const mapDispatchToProps = (dispatch) => {
+  return {
+    ocultarMenu: (accion) => {
+      dispatch({ type: "ACCIONAR_MENU_APP", accion })
+    }
   }
 }
 

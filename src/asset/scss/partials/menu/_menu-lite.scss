@@ -628,6 +628,7 @@
         }
 
         +.datta-scroll {
+            float: left;
             display: inline-block;
         }
     }
@@ -929,6 +930,10 @@
                         &:after {
                             right: 12px;
                         }
+                    }
+
+                    .pcoded-submenu {
+                        //display: none;
                     }
                 }
             }
@@ -1494,6 +1499,25 @@
                     &:hover {
                         color: #fff;
                     }
+                }
+
+                .main-search {
+                    // .search-close > .input-group-text {
+                    //     color: $primary-color;
+                    // }
+                    //
+                    // &.open {
+                    //     .input-group {
+                    //         .search-btn {
+                    //             background: $primary-color;
+                    //             border-color: $primary-color;
+                    //
+                    //             .input-group-text {
+                    //                 color: #fff;
+                    //             }
+                    //         }
+                    //     }
+                    // }
                 }
 
                 .dropdown {
