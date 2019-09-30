@@ -27,11 +27,11 @@ export class Menu extends Component {
         const { className, accion, className_icon } = this.props;
 
         const nuevoClassName = className + " " + accion;
-
+        console.log(className_icon)
         return (
+            
             <nav className={nuevoClassName}>
                 <div className="navbar-wrapper">
-
                     {/* Logo menu - Inicio */}
                     <div className="navbar-brand header-logo">
                         <a href="index.html" className="b-brand">

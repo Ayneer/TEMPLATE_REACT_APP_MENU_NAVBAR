@@ -632,7 +632,7 @@
             display: inline-block;
         }
     }
-
+    
     .mobile-menu {
         display: flex;
         align-items: center;
@@ -686,7 +686,7 @@
                 &:before {
                     height: 2px;
                     width: 100%;
-                }
+              }
 
                 &:before {
                     transform: rotate(45deg) translate(4px, 4px);
