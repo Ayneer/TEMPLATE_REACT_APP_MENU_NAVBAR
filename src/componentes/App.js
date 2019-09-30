@@ -9,7 +9,7 @@ import Aux from './_Aux/_Aux';
 import CargandoPagina from './cargando/CargandoPagina';
 
 //Al ser este archivo quien contiene las rutas, se debe import lo necesario.
-import { Switch, Route, Redirect } from 'react-router-dom';
+import { Switch, Route, withRouter } from 'react-router-dom';
 
 //scss
 import '../../node_modules/font-awesome/scss/font-awesome.scss';
@@ -17,9 +17,9 @@ import './app.scss';
 
 //Componente Menu que aparece a la izquierda
 import Menu from './menu/menu';
-
 //Componente navbar
 import Navbar from './navbar/navbar';
+import HomeDefecto from './vistas/home/homeDefecto';
 
 //importamos la ruta por defecto (La importará cuando sea requerida)
 const InicarSesion = Loadable({
@@ -57,11 +57,24 @@ export class App extends Component {
           {/* Suspense se utiliza para mostrar "algo" miestras se carga el/los import necesarios */}
           <Menu />
           <Navbar />
-          <Switch>
-            <Route exact path="/" component={Home} />
-            <Route path="/iniciarSesion" component={InicarSesion} />
-            <Route path="/registrarme" component={Registrarme} />
-          </Switch>
+          <div className="pcoded-main-container" onClick={this.ocultarMenu}>
+            <div className="pcoded-wrapper">
+              <div className="pcoded-content">
+                <div className="pcoded-inner-content">
+                  <HomeDefecto titulo={this.props.titulo} />
+                  <div className="main-body">
+                    <Switch>
+                      <Route exact path="/" component={Home} />
+                    </Switch>
+                  </div>
+                </div>
+              </div>
+            </div>
+          </div>
+
+          {/* <Route path="/iniciarSesion" component={InicarSesion} />
+            <Route path="/registrarme" component={Registrarme} /> */}
+
         </Suspense>
 
       </Aux >
@@ -70,9 +83,15 @@ export class App extends Component {
 }
 
 
-const mapStateToProps = (state) => {
+const mapStateToProps = (state, ownProps) => {
+  let titulo = "";
+  switch (ownProps.location.pathname) {
+    case '/': titulo = "Home"; break;
+    default: break;
+  }
   return {
-    menu_añadido: state.menu.className_menu_añadido
+    menu_añadido: state.menu.className_menu_añadido,
+    titulo
   }
 }
 
@@ -84,4 +103,4 @@ const mapDispatchToProps = (dispatch) => {
   }
 }
 
-export default connect(mapStateToProps, mapDispatchToProps)(App);
+export default withRouter(connect(mapStateToProps, mapDispatchToProps)((App)));

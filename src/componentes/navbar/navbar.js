@@ -30,10 +30,17 @@ export class Navbar extends Component {
                     </a>
                 </div>
                 <div className="collapse navbar-collapse">
+                    <ul className="navbar-nav mr-auto">
+                        <li>
+                            <Dropdown>
+                                <Dropdown.Toggle variant='link' id="dropdown-basic">
+                                    <i className="icon feather icon-bell" />
+                                </Dropdown.Toggle>
+                            </Dropdown>
+                        </li>
+                    </ul>
                     <ul className="navbar-nav ml-auto">
                         <li>
-                            {/* 
-                                        <i className="icon feather fa fa-spinner fa-spin"></i> */}
                             <Dropdown>
                                 <Dropdown.Toggle variant='link' id="dropdown-basic">
                                     <i className="icon feather icon-bell" />

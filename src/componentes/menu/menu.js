@@ -29,7 +29,7 @@ export class Menu extends Component {
         const nuevoClassName = className + " " + accion;
 
         return (
-            <div className={nuevoClassName}>
+            <nav className={nuevoClassName}>
                 <div className="navbar-wrapper">
 
                     {/* Logo menu - Inicio */}
@@ -96,7 +96,7 @@ export class Menu extends Component {
                     {/* Lista de opciones del menu - Fin */}
 
                 </div>
-            </div>
+            </nav>
         )
     }
 }

@@ -1,8 +1,5 @@
 import React from 'react';
 
-//Redux
-import { connect } from 'react-redux';
-
 function HomeDefecto({ titulo }) {
     return (
         <div className="page-header">
@@ -19,10 +16,4 @@ function HomeDefecto({ titulo }) {
     )
 }
 
-const mapStateToProps = (state) => {
-    return {
-        titulo: state.app.titulo
-    }
-}
-
-export default connect(mapStateToProps)(HomeDefecto);
+export default HomeDefecto;
